@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Validar HTML com htmlhint
-        uses: reviewdog/action-htmlhint@v0.1.2
+        uses: reviewdog/action-htmlhint@v3
         with:
           directory: ./ 
 
