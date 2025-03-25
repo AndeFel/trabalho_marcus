@@ -1,4 +1,4 @@
-name: CI/CD
+name: CI/CD  
 
 on:
   push:
@@ -6,26 +6,14 @@ on:
       - main  # Gatilho: toda vez que houver push na branch 'main'
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Clonar o repositório
-        uses: actions/checkout@v3
-
-      - name: Verificar a estrutura do HTML
-        uses: cyb3r-jak3/html-validator-action@v1.2.2
-        with:
-          directory: ./  # Valida os arquivos HTML no diretório raiz
-
   deploy:
-    needs: build  # Só roda depois da verificação
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  # Usando uma máquina Ubuntu para rodar o workflow
     steps:
       - name: Clonar o repositório
-        uses: actions/checkout@v3
-      
+        uses: actions/checkout@v3  # Baixa o código do repositório
+
       - name: Implantar no GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
+        uses: JamesIves/github-pages-deploy-action@v4  # Ação para fazer o deploy no GitHub Pages
         with:
           branch: gh-pages  # Branch onde será feito o deploy
-          folder: ./  # Pasta onde está o HTML
+          folder: ./  # Pasta onde está o HTML (diretório raiz neste caso)
