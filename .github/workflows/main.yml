@@ -1,19 +1,1 @@
-name: CI/CD  
 
-on:
-  push:
-    branches:
-      - main  # Gatilho: toda vez que houver push na branch 'main'
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest  # Usando uma máquina Ubuntu para rodar o workflow
-    steps:
-      - name: Clonar o repositório
-        uses: actions/checkout@v3  # Baixa o código do repositório
-
-      - name: Implantar no GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4  # Ação para fazer o deploy no GitHub Pages
-        with:
-          branch: gh-pages  # Branch onde será feito o deploy
-          folder: ./  # Pasta onde está o HTML (diretório raiz neste caso)
