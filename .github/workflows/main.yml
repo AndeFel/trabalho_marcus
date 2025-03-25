@@ -1,1 +1,32 @@
+name: Deploy HTML para GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Gatilho: toda vez que houver push na branch 'main'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar o repositório
+        uses: actions/checkout@v3
+
+      - name: Verificar a estrutura do HTML
+        uses: cyb3r-jak3/html-validator-action@v1.2.2
+        with:
+          directory: ./  # Valida os arquivos HTML no diretório raiz
+
+  deploy:
+    needs: build  # Só roda depois da verificação
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar o repositório
+        uses: actions/checkout@v3
+      
+      - name: Implantar no GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages  # Branch onde será feito o deploy
+          folder: ./  # Pasta onde está o HTML
 
